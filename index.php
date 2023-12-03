@@ -23,7 +23,7 @@
 								<div class="slide-layout-02 text-center">
 									<div class="slide-subtitle">Ultrapic</div>
 									<div class="slide-title">
-										Embedded System <br>and Robotic Limited
+										
 									</div>
 									<a class="btn-link-icon btn-link-icon__md" href="about.php">
 										<i class="btn__icon">
@@ -70,10 +70,10 @@
 									<div class="slide-layout-01">
 										<div class="slide-subtitle">Ultrapic</div>
 										<div class="slide-title">
-											Robotic<br> Systems
+											Robotics<br> Systems
 										</div>
 										<div class="slide-description">
-											Our robotic systems are built on a foundation of advanced technologies, ensuring precision, performance, and reliability.
+											Our robotics systems are built on a foundation of advanced technologies, ensuring precision, performance, and reliability.
 										</div>
 										<a class="btn-link-icon btn-link-icon__md" href="about.php">
 											<i class="btn__icon">
@@ -136,7 +136,7 @@
 			<div class="container">
 				<div class="section-heading section-heading_indentg02">
 					<div class="description"><i></i>Ultrpic Solutions</div>
-					<h4 class="title">Robotics and Emdded System Solutions</h4>
+					<h4 class="title">Robotics and Embedded System Solutions</h4>
 				</div>
 				<div class="masonry-layout-01">
 					<div class="masonry-layout-01-init grid-col-3">
@@ -263,7 +263,7 @@
 							</div>
 							<div class="promo-box__description">
 								<div class="promo-box__title">
-									Ultrapic <br>Embedded System and Robotic Limited
+									Ultrapic <br>Embedded System and Robotics Limited
 								</div>
 								<div class="promo-box__link">READ MORE</div>
 							</div>
@@ -495,7 +495,7 @@
 		</section>
 		<!-- end section -->
 		<!-- start section -->
-		<section class="section section__indent-04 section--bg-vertical-line section--bg-01">
+		<section class="section section__indent-04 section--bg-vertical-line section--bg-01" style="margin-bottom:300px;">
 			<div class="infobox02-extra-img d-none d-lg-block d-xl-block">
 				<img src="images/train/train.png" alt="">
 			</div>
@@ -516,41 +516,10 @@
 									<img src="images/index_img_01_table.png" alt="">
 								</p> -->
 								<form class="contact-form form-default" id="contactform" method="post" novalidate="novalidate" action="includes/process.php">
-									<p style="color: #2e3192; font-weight:700">Complete the form below to enroll in a training session </p> <br>
+									<p style="color: #2e3192; font-weight:700">Click the below form to register </p> <br>
 									<div class="row">
 										<div class="col-md-12 col-lg-12">
-											<div class="notes d-md-none d-lg-none d-xl-none">
-												* - fields are required
-											</div>
-											<div class="form-group">
-												<label class="placeholder-label">Matric Number *</label>
-												<input type="text" name="matric" class="form-control" id="matric" required>
-											</div>
-											<div class="form-group">
-												<label class="placeholder-label">First name *</label>
-												<input type="text" name="fname" class="form-control" id="inputName" required>
-											</div>
-											<div class="form-group">
-												<label class="placeholder-label">Last name *</label>
-												<input type="text" name="lname" class="form-control" id="inputLast" required>
-											</div>
-											<div class="form-group">
-												<label class="placeholder-label">Email</label>
-												<input type="text" name="email" class="form-control" id="cf-inputEmail" required>
-											</div>
-											<div class="form-group">
-												<div class="wrapper-select-for-title">
-													<label class="placeholder-label">Choose Course *</label>
-													<select name="course" class="js-init-select select-custom-02" required>
-														<option value="">Choose Course</option>
-														<option value="fdf">Introduction to Robot Programming</option>
-														<option>Basic Agricultural Drone Pilot</option>
-														<option>Microcontroller Programming</option>
-														<option>Advanced Robot/Embedded systems Programming Training</option>
-													</select>
-												</div>
-											</div>
-											<button type="submit" class="btn btn-sm">Submit</button>
+											<a href="training.php" class="btn btn-sm">Enrol</a>
 										</div>
 									</div>
 								</form>

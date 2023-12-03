@@ -10,7 +10,7 @@
 				<!-- end navigation-toggle -->
 				<!-- start logo -->
 				<a href="index.php" class="top-bar__logo">
-					<img src="images/favicon.ico" alt="" srcset=""> Ultrapic.
+					<img src="images/logo.jpg" alt="" srcset="" style="height: 60px;"> 
 				</a>
 				<!-- end logo -->
 			</div>

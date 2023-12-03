@@ -2,6 +2,7 @@
 <html lang="en">
 
 <?php
+include "controllers/configController.php";
 $title = "Ultrapic - Training | Embedded System and Robotic Limited";
 include 'layout/head.php';
 ?>
@@ -38,14 +39,17 @@ include 'layout/head.php';
 								<h4 class="title title-lg">Registration Form</h4>
 							</div>
 							<strong class="base-color-01">
-							In an effort to improve our level of service, Ultrapic now offers life-long free training to its customers who procure new robotic systems from the company.
+								In an effort to improve our level of service, Ultrapic now offers life-long free
+								training to its customers who procure new robotic systems from the company.
 
 							</strong>
 							<p>
-							Training is conducted at our training facility and is given to 5 delegates at a time. The training takes place over 4 days. Additional training can also be booked at a competitive rate
+								Training is conducted at our training facility and is given to 5 delegates at a time.
+								The training takes place over 4 days. Additional training can also be booked at a
+								competitive rate
 							</p>
 							<p>
-							We offer:
+								We offer:
 							<ul>
 								<li>Introduction to Robot Programming</li>
 								<li>Basic Agricultural Drone Pilot</li>
@@ -56,52 +60,101 @@ include 'layout/head.php';
 						</div>
 						<div class="divider divider__lg d-block d-sm-none"></div>
 						<div class="col-sm-5 offset-lg-1">
-						<form class="contact-form form-default" id="contactform" method="post" novalidate="novalidate" action="#">
-									<p style="color: #2e3192; font-weight:700">Complete the form below to enroll in a training session </p> <br>
-									<div class="row">
-										<div class="col-md-12 col-lg-12">
-											<div class="notes d-md-none d-lg-none d-xl-none">
-												* – fields are required
-											</div>
-											<div class="form-group">
-												<label class="placeholder-label">First name *</label>
-												<input type="text" name="name" class="form-control" id="inputName">
-											</div>
-											<div class="form-group">
-												<label class="placeholder-label">Last name *</label>
-												<input type="text" name="name2" class="form-control" id="inputLast">
-											</div>
-											<div class="form-group">
-												<label class="placeholder-label">Email</label>
-												<input type="text" name="email" class="form-control" id="cf-inputEmail">
-											</div>
-											<div class="form-group">
-												<div class="wrapper-select-for-title">
-													<label class="placeholder-label">Industry *</label>
-													<select name="industry" class="js-init-select select-custom-02">
-														<option>Please select</option>
-														<option>Agriculture</option>
-														<option>Delivery</option>
-														<option>MasMedia</option>
-														<option>Entertaiment</option>
-													</select>
-												</div>
-											</div>
-											<button type="submit" class="btn btn-sm">Submit</button>
+							<form class="contact-form form-default" method="post" action="controllers/registrationController.php">
+								<p style="color: #2e3192; font-weight:700">Complete the form below to enroll in a
+									training session </p> <br>
+									<?php include 'controllers/message.php'; ?>
+								<div class="row">
+									<div class="col-md-12 col-lg-12">
+										<div class="notes d-md-none d-lg-none d-xl-none">
+											* – fields are required
 										</div>
+										<div class="form-group">
+											<label class="placeholder-label">Matric Number *</label>
+											<input type="text" name="matric_no" class="form-control" id="matric" required>
+										</div>
+										<div class="form-group">
+											<label class="placeholder-label">First name (Your Name) *</label>
+											<input type="text" name="first_name" class="form-control" id="inputName"
+												required>
+										</div>
+										<div class="form-group">
+											<label class="placeholder-label">Middle name (Other Name)</label>
+											<input type="text" name="middle_name" class="form-control" id="inputName">
+										</div>
+										<div class="form-group">
+											<label class="placeholder-label">Last name (Surname)*</label>
+											<input type="text" name="last_name" class="form-control" id="inputLast"
+												required>
+										</div>
+										<div class="form-group">
+											<label class="placeholder-label">Contact Phone Number *</label>
+											<input type="text" name="phone" class="form-control" id="inputName"
+												required>
+										</div>
+										<div class="form-group">
+											<label class="placeholder-label">Email (One email for a registration)</label>
+											<input type="email" name="email" class="form-control" id="cf-inputEmail"
+												required>
+										</div>
+										<div class="form-group">
+											<div class="wrapper-select-for-title">
+												<label class="placeholder-label">Choose You Department *</label>
+												<select name="department_id" class="js-init-select select-custom-02" required>
+													<option value="">Choose Department</option>
+													<?php
+														while ($rowDepartment = mysqli_fetch_array($getDepartmentQuery)) {
+															$department_id = $rowDepartment['department_id'];
+															$department_name = $rowDepartment['department_name'];
+															echo '<option value="'.$department_id.'">'.$department_name.'</option>';
+														}
+													?>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="wrapper-select-for-title">
+												<label class="placeholder-label">Choose Course *</label>
+												<select name="register_courses_id" class="js-init-select select-custom-02" required>
+													<option value="">Choose Course</option>
+													<?php
+														while ($rowCourse = mysqli_fetch_array($getCourseQuery)) {
+															$course_id = $rowCourse['course_id'];
+															$course_name = $rowCourse['course_name'];
+															echo '<option value="'.$course_id.'">'.$course_name.'</option>';
+														}
+													?>
+												</select>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="wrapper-select-for-title">
+												<label class="placeholder-label">Level *</label>
+												<select name="level" class="js-init-select select-custom-02" required>
+													<option value="">Choose Level</option>
+													<option value="100">100 Level</option>
+													<option value="200">200 Level</option>
+													<option value="300">300 Level</option>
+													<option value="400">400 Level</option>
+													<option value="500">500 Level</option>
+												</select>
+											</div>
+										</div>
+										<button type="submit" name="enrol" class="btn btn-sm">Submit</button>
 									</div>
-								</form>
-						
+								</div>
+							</form>
+
 							<div class="extra-block01"></div>
 						</div>
 					</div>
 					<div class="divider divider__48 d-none d-lg-block d-xl-block"></div>
-					
+
 				</div>
 			</div>
 		</section>
 		<!-- end section -->
-		
+
 		<!-- start section -->
 		<section class="section section-default-top">
 			<div class="container">
@@ -171,7 +224,7 @@ include 'layout/head.php';
 						<div class="element-item sort-value-01 col-sm-6 col-md-4 col-lg-3">
 							<!-- <a href="http://www.dailymotion.com/video/xxgmlg#.UV71MasY3wE"
 								class="videolink video-popup"> -->
-								<a href="images/gallery/p6.png" class="btn-zomm">
+							<a href="images/gallery/p6.png" class="btn-zomm">
 								<figure>
 									<img src="images/gallery/p6.png" alt="">
 									<figcaption>
@@ -245,14 +298,15 @@ include 'layout/head.php';
 				</div>
 			</div>
 		</section><br><br>
-		
+
 		<!-- end section -->
 	</main>
-	
+
 	<?php
-		include 'layout/footer.php';
-		include 'layout/sidemenu.php';
-		include 'layout/js.php';
+	include 'layout/footer.php';
+	include 'layout/sidemenu.php';
+	include 'layout/js.php';
 	?>
 </body>
+
 </html>
