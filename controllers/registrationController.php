@@ -22,9 +22,9 @@ if (isset($_POST["enrol"])) {
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
     $middle_name = $_POST["middle_name"];
-    $matric_no = $_POST["matric_no"];
+    $matric_no = strtoupper($_POST["matric_no"]);
     $phone = $_POST["phone"];
-    $email = $_POST["email"];
+    $email = strtolower($_POST["email"]);
     $register_courses_id = (int) $_POST["register_courses_id"];
     $department_id = (int) $_POST["department_id"];
     $level = (int) $_POST["level"];
@@ -39,8 +39,6 @@ if (isset($_POST["enrol"])) {
         // Generate the next application ID
         // Start from the next ID
         $nextIdNumeric = $lastId + 1;
-
-        // Generate the next application ID and check for uniqueness
         do {
             $nextApplicationId = generateNextApplicationId('UL/APP/', $nextIdNumeric);
             $checkQuery = "SELECT id FROM students WHERE id = '$nextApplicationId'";
