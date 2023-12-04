@@ -1,7 +1,12 @@
 <?php
+// $servername = "localhost"; 
+// $username = "root";
+// $password = "";
+// $database = "ultrapic";
+
 $servername = "localhost"; 
-$username = "root";
-$password = "";
+$username = "ultrapic";
+$password = "Ultrapic0o2023";
 $database = "ultrapic";
 
 // Create connection
