@@ -23,7 +23,7 @@
 								<div class="slide-layout-02 text-center">
 									<div class="slide-subtitle">Ultrapic</div>
 									<div class="slide-title">
-										
+										Embedded System and Robotics Limited
 									</div>
 									<a class="btn-link-icon btn-link-icon__md" href="about.php">
 										<i class="btn__icon">
