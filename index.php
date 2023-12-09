@@ -97,6 +97,7 @@
 			<div class="container container-fluid-lg-nogutters">
 				<div class="promobox-slider">
 					<div class="promobox-slider__img">
+						<a href="http://www.dailymotion.com/video/xxgmlg#.UV71MasY3wE"><img src="images/promo/promobox-slider.jpg" alt=""></a>
 						<!-- <a href="http://www.dailymotion.com/video/xxgmlg#.UV71MasY3wE" class="video-popup link-icon-video"><i class="icon-video"></i><img src="images/promo/promobox-slider.jpg" alt=""></a> -->
 					</div>
 					<div class="promobox-slider__layout">
@@ -337,19 +338,37 @@
 				<div class="item">
 					<a class="video-popup link-icon-video02">
 						<!-- <span class="icon-video"><i></i></span> -->
-						<img src="images/carusel/slider1.png" alt="">
+						<img src="images/carusel/slider1.jpg" alt="">
 					</a>
 				</div>
 				<div class="item">
 					<a class="video-popup link-icon-video02">
 						<!-- <span class="icon-video"><i></i></span> -->
-						<img src="images/carusel/slider2.png" alt="">
+						<img src="images/carusel/slider2.jpg" alt="">
 					</a>
 				</div>
 				<div class="item">
 					<a class="video-popup link-icon-video02">
 						<!-- <span class="icon-video"><i></i></span> -->
-						<img src="images/carusel/slider3.png" alt="">
+						<img src="images/carusel/slider3.jpg" alt="">
+					</a>
+				</div>
+				<div class="item">
+					<a class="video-popup link-icon-video02">
+						<!-- <span class="icon-video"><i></i></span> -->
+						<img src="images/carusel/slider4.jpg" alt="">
+					</a>
+				</div>
+				<div class="item">
+					<a class="video-popup link-icon-video02">
+						<!-- <span class="icon-video"><i></i></span> -->
+						<img src="images/carusel/slider5.jpg" alt="">
+					</a>
+				</div>
+				<div class="item">
+					<a class="video-popup link-icon-video02">
+						<!-- <span class="icon-video"><i></i></span> -->
+						<img src="images/carusel/slider6.jpg" alt="">
 					</a>
 				</div>
 			</div>
