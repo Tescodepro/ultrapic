@@ -97,7 +97,7 @@
 			<div class="container container-fluid-lg-nogutters">
 				<div class="promobox-slider">
 					<div class="promobox-slider__img">
-						<a href="http://www.dailymotion.com/video/xxgmlg#.UV71MasY3wE" class="video-popup link-icon-video"><i class="icon-video"></i><img src="images/promo/promobox-slider.jpg" alt=""></a>
+						<!-- <a href="http://www.dailymotion.com/video/xxgmlg#.UV71MasY3wE" class="video-popup link-icon-video"><i class="icon-video"></i><img src="images/promo/promobox-slider.jpg" alt=""></a> -->
 					</div>
 					<div class="promobox-slider__layout">
 						<address>
