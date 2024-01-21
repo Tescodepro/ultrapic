@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+    data-sidebar-image="none" data-preloader="disable">
+
 <head>
 
     <meta charset="utf-8" />
@@ -41,12 +43,29 @@
                                             <h5 class="text-primary">Welcome Back !</h5>
                                             <p class="text-muted">Sign in to continue to Ultrapic.</p>
                                         </div>
+                                        <?php
+                                        // error or success alart using get method 
+                                        if (isset($_GET['type'])) {
+                                            if ($_GET['type'] == 'success') {
+                                                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Well done!</strong> ' . $_GET['msg'] . '
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
+                                            } else {
+                                                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>Oh snap!</strong> ' . $_GET['msg'] . '
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
+                                            }
+                                        }
+                                        ?>
 
                                         <div class="mt-4">
-                                            <form action="" method="">
+                                            <form action="controller/loginController.php" method="POST">
                                                 <div class="mb-3">
                                                     <label for="username" class="form-label">Email</label>
-                                                    <input type="email" class="form-control" id="username" placeholder="Enter email">
+                                                    <input type="email" name="email" class="form-control" id="username"
+                                                        placeholder="Enter email">
                                                 </div>
                                                 <div class="mb-3">
                                                     <!-- <div class="float-end">
@@ -54,13 +73,17 @@
                                                     </div> -->
                                                     <label class="form-label" for="password-input">Password</label>
                                                     <div class="position-relative auth-pass-inputgroup mb-3">
-                                                        <input type="password" class="form-control pe-5 password-input" placeholder="Enter password" id="password-input">
-                                                        <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
+                                                        <input type="password" name="password" class="form-control pe-5 password-input"
+                                                            placeholder="Enter password" id="password-input">
+                                                        <button
+                                                            class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                                                            type="button"  id="password-addon"><i
+                                                                class="ri-eye-fill align-middle"></i></button>
                                                     </div>
                                                 </div>
 
                                                 <div class="mt-4">
-                                                    <button class="btn btn-success w-100" type="submit">Sign In</button>
+                                                    <button class="btn btn-success w-100" name="login" type="submit">Sign In</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -110,4 +133,5 @@
     <!-- password-addon init -->
     <script src="assets/js/pages/password-addon.init.js"></script>
 </body>
+
 </html>
