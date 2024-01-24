@@ -22,7 +22,11 @@ if (isset($_POST["enrol"])) {
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
     $middle_name = $_POST["middle_name"];
+
     $matric_no = strtoupper($_POST["matric_no"]);
+
+    $pattern = "/^(N|PN|H)\/[A-Za-z]+\/\d+\/\d+$/";
+
     $phone = $_POST["phone"];
     $email = strtolower($_POST["email"]);
     $register_courses_id = (int) $_POST["register_courses_id"];
@@ -30,6 +34,11 @@ if (isset($_POST["enrol"])) {
     $level = (int) $_POST["level"];
 
     $last_id = "SELECT MAX(id) AS last_id FROM students";
+
+    if (!preg_match($pattern, $matric_no)) {
+        $msg = "Matriculation number is not valid";
+        header("Location:../training.php?type=error&msg=$msg");
+    }
 
     $result = $dbconnect->query($last_id);
 
