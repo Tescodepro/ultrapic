@@ -40,7 +40,7 @@
                                 <div class="col-lg-12">
                                     <div class="p-lg-5 p-4">
                                         <div>
-                                            <h1>Testing</h1>
+                                            <h1 class="text-primary">Ultrapic</h1>
                                             <h5 class="text-primary">Welcome Back !</h5>
                                             <p class="text-muted">Sign in to continue to Ultrapic.</p>
                                         </div>
