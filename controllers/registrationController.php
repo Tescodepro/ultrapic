@@ -1,6 +1,7 @@
 <?php
 include("database.php");
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 function generateNextApplicationId($prefix, $lastId)
@@ -22,44 +23,19 @@ if (isset($_POST["enrol"])) {
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
     $middle_name = $_POST["middle_name"];
-
     $matric_no = strtoupper($_POST["matric_no"]);
-
     $pattern = "/^(N|PN|H)\/[A-Za-z]+\/\d+\/\d+$/";
 
     $phone = $_POST["phone"];
     $email = strtolower($_POST["email"]);
     $register_courses_id = (int) $_POST["register_courses_id"];
     $department_id = (int) $_POST["department_id"];
-    $level = (int) $_POST["level"];
+    $level = $_POST["level"];
 
-    $last_id = "SELECT MAX(id) AS last_id FROM students";
 
     if (!preg_match($pattern, $matric_no)) {
         $msg = "Matriculation number is not valid";
         header("Location:../training.php?type=error&msg=$msg");
-    }
-
-    $result = $dbconnect->query($last_id);
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $lastId = $row['last_id'];
-        // Generate the next application ID
-        // Start from the next ID
-        $nextIdNumeric = $lastId + 1;
-        do {
-            $nextApplicationId = generateNextApplicationId('UL/APP/', $nextIdNumeric);
-            $checkQuery = "SELECT id FROM students WHERE id = '$nextApplicationId'";
-            $checkResult = $dbconnect->query($checkQuery);
-
-            if ($checkResult->num_rows == 0) {
-                // ID is unique, break the loop
-                break;
-            }
-            // ID already exists, try the next one
-            $nextIdNumeric++;
-        } while (true);
     }
 
     // Check if the values already exist in the database
@@ -75,6 +51,13 @@ if (isset($_POST["enrol"])) {
         $msg = "Duplicate entry found for $duplicateMatricNo $duplicatePhone $duplicateEmail.";
         header("Location:../training.php?type=error&msg=$msg");
     } else {
+
+        // Get the last used application ID
+        $lastApplicationId = $dbconnect->query("SELECT MAX(application_id) AS last_id FROM students")->fetch_assoc()['last_id'];
+
+        // Generate the next application ID
+        $nextApplicationId = generateNextApplicationId('UL/APP/', $lastApplicationId);
+
 
         $sql = $dbconnect->prepare("INSERT INTO students (application_id, first_name, last_name, middle_name, matric_no, phone, email, register_courses_id, department_id, level)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -93,15 +76,12 @@ if (isset($_POST["enrol"])) {
 
             return $content;
         }
+
         // send mail
         // Include the PHPMailer autoload file
         require '../vendor/autoload.php';
-
         // Create a new PHPMailer instance
         $mail = new PHPMailer(true);
-
-
-
         try {
 
             $templatePath = 'mail_tem.html';
@@ -109,16 +89,15 @@ if (isset($_POST["enrol"])) {
                 'USERNAME' => $first_name . ' ' . $last_name . ' ' . $middle_name,
                 'APPLICATION_ID' => $nextApplicationId,
             ];
-
-
             //Server settings
+            // $mail->SMTPDebug = SMTP::DEBUG_SERVER; 
             $mail->isSMTP();
             $mail->Host = 'smtp.googlemail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'tescodepro@gmail.com';
-            $mail->Password = 'tmlkcqowomgsaqnt';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 587;
+            $mail->Password = 'hdlswyercjuwctjy';
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
 
             //Recipients
             $mail->setFrom('info@ultrapic.com', 'Ultrapic Solution');
@@ -148,9 +127,6 @@ if (isset($_POST["enrol"])) {
         } catch (Exception $e) {
             echo "Error sending email: {$mail->ErrorInfo}";
         }
-
-
-
     }
 
 }

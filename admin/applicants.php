@@ -4,6 +4,7 @@ include 'islogin.php';
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
     data-sidebar-image="none" data-preloader="disable">
+
 <head>
     <meta charset="utf-8" />
     <title>Students - Ultrapic</title>
@@ -53,72 +54,76 @@ include 'islogin.php';
                             <div class="d-flex flex-column h-100">
                                 <div class="col-lg-12">
                                     <div class="card">
-                                        <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div class="card-header"
+                                            style="display: flex; justify-content: space-between; align-items: center;">
                                             <h5 class="card-title mb-0">Applied Students</h5>
-                                            <a href="download_student.php" class="btn btn-sm btn-success">Download Students</a>
+                                            <a href="download_student.php" class="btn btn-sm btn-success">Download
+                                                Students</a>
                                         </div>
-                                        <div class="card-body table-responsive  export-table">
-                                            <table id="file-datatable" class="table table-bordered data-responsive key-buttons"
-                                                style="width:100%">
-                                                <thead>
-                                                    <tr>
-                                                        <th data-ordering="false">S/N</th>
-                                                        <th data-ordering="false">Application Number</th>
-                                                        <th data-ordering="false">Matric No</th>
-                                                        <th data-ordering="false">Fullname</th>
-                                                        <th data-ordering="false">Email</th>
-                                                        <th data-ordering="false">Phone</th>
-                                                        <th data-ordering="false">Level</th>
-                                                        <th data-ordering="false">Course</th>
-                                                        <th data-ordering="false">Department</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php
-                                                    $count = 1;
-                                                    $get_students = "SELECT * FROM students INNER JOIN courses ON courses.course_id = students.register_courses_id INNER JOIN departments ON departments.department_id = students.department_id";
-                                                    $result_row = mysqli_query($dbconnect, $get_students);
-                                                    while ($fetch = mysqli_fetch_array($result_row)) {
-                                                        $application_id = $fetch['application_id'];
-                                                        $matric_no = $fetch['matric_no'];
-                                                        $email = $fetch['email'];
-                                                        $phone = $fetch['phone'];
-                                                        $level = $fetch['level'];
-                                                        $course = $fetch['course_name'];
-                                                        $department = $fetch['department_name'];
-                                                        $name = $fetch['first_name'] . ' ' . $fetch['middle_name'] . ' ' . $fetch['last_name'];
-                                                        ?>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="buttons-datatables" class="display table table-bordered"
+                                                    style="width:100%">
+                                                    <thead>
                                                         <tr>
-                                                            <td>
-                                                                <?php echo $count++; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $application_id ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $matric_no ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $name; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $email; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $phone; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $level; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $course; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $department; ?>
-                                                            </td>
+                                                            <th data-ordering="false">S/N</th>
+                                                            <th data-ordering="false">Application Number</th>
+                                                            <th data-ordering="false">Matric No</th>
+                                                            <th data-ordering="false">Fullname</th>
+                                                            <th data-ordering="false">Email</th>
+                                                            <th data-ordering="false">Phone</th>
+                                                            <th data-ordering="false">Level</th>
+                                                            <th data-ordering="false">Course</th>
+                                                            <th data-ordering="false">Department</th>
                                                         </tr>
-                                                        <div class="modal fade" id="studentModal<?php echo $count; ?>" tabindex="-1"
-                                                                role="dialog" aria-labelledby="exampleModalScrollableTitle"
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $count = 1;
+                                                        $get_students = "SELECT * FROM students INNER JOIN courses ON courses.course_id = students.register_courses_id INNER JOIN departments ON departments.department_id = students.department_id";
+                                                        $result_row = mysqli_query($dbconnect, $get_students);
+                                                        while ($fetch = mysqli_fetch_array($result_row)) {
+                                                            $application_id = $fetch['application_id'];
+                                                            $matric_no = $fetch['matric_no'];
+                                                            $email = $fetch['email'];
+                                                            $phone = $fetch['phone'];
+                                                            $level = $fetch['level'];
+                                                            $course = $fetch['course_name'];
+                                                            $department = $fetch['department_name'];
+                                                            $name = $fetch['first_name'] . ' ' . $fetch['middle_name'] . ' ' . $fetch['last_name'];
+                                                            ?>
+                                                            <tr>
+                                                                <td>
+                                                                    <?php echo $count++; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $application_id ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $matric_no ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $name; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $email; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $phone; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $level; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $course; ?>
+                                                                </td>
+                                                                <td>
+                                                                    <?php echo $department; ?>
+                                                                </td>
+                                                            </tr>
+                                                            <div class="modal fade" id="studentModal<?php echo $count; ?>"
+                                                                tabindex="-1" role="dialog"
+                                                                aria-labelledby="exampleModalScrollableTitle"
                                                                 aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-scrollable">
                                                                     <div class="modal-content">
@@ -148,11 +153,13 @@ include 'islogin.php';
                                                                     </div><!-- /.modal-content -->
                                                                 </div><!-- /.modal-dialog -->
                                                             </div><!-- /.modal -->
-                                                    <?php } ?>
+                                                        <?php } ?>
 
-                                                </tbody>
-                                            </table>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -190,8 +197,6 @@ include 'islogin.php';
 
 
 
-
-
     <!-- JAVASCRIPT -->
     <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/libs/simplebar/simplebar.min.js"></script>
@@ -200,33 +205,21 @@ include 'islogin.php';
     <script src="assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
     <script src="assets/js/plugins.js"></script>
 
-    <!-- apexcharts -->
-    <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
-    <!-- Vector map-->
-    <script src="assets/libs/jsvectormap/js/jsvectormap.min.js"></script>
-    <script src="assets/libs/jsvectormap/maps/world-merc.js"></script>
-    <script src="assets/js/lordicon-0.2.0.js"></script>
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <!--datatable js-->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 
-    <!-- Dashboard init -->
-    <script src="assets/js/pages/dashboard-analytics.init.js"></script>
-
-    	      <!-- Internal Data tables -->
-		<script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-		<script src="assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
-		<script src="assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
-		<script src="assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
-		<script src="assets/plugins/datatable/js/jszip.min.js"></script>
-		<script src="assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
-		<script src="assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
-		<script src="assets/plugins/datatable/js/buttons.html5.min.js"></script>
-		<script src="assets/plugins/datatable/js/buttons.print.min.js"></script>
-		<script src="assets/plugins/datatable/js/buttons.colVis.min.js"></script>
-		<script src="assets/plugins/datatable/dataTables.responsive.min.js"></script>
-		<script src="assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
-		<script src="assets/js/table-data.js"></script>
-
+    <script src="assets/js/pages/datatables.init.js"></script>
     <!-- App js -->
     <script src="assets/js/app.js"></script>
 </body>
