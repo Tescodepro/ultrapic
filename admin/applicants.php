@@ -50,6 +50,21 @@ include 'islogin.php';
                     <!-- end page title -->
 
                     <div class="row">
+                        <?php
+                        if (isset ($_GET['type'])) {
+                            if ($_GET['type'] == 'success') {
+                                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Well done!</strong> ' . $_GET['msg'] . '
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                      </div>';
+                            } else {
+                                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <strong>Oh snap!</strong> ' . $_GET['msg'] . '
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                      </div>';
+                            }
+                        }
+                        ?>
                         <div class="col-xxl-12">
                             <div class="d-flex flex-column h-100">
                                 <div class="col-lg-12">
@@ -75,6 +90,7 @@ include 'islogin.php';
                                                             <th data-ordering="false">Level</th>
                                                             <th data-ordering="false">Course</th>
                                                             <th data-ordering="false">Department</th>
+                                                            <th data-ordering="false">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -90,6 +106,7 @@ include 'islogin.php';
                                                             $level = $fetch['level'];
                                                             $course = $fetch['course_name'];
                                                             $department = $fetch['department_name'];
+                                                            $id = $fetch['id'];
                                                             $name = $fetch['first_name'] . ' ' . $fetch['middle_name'] . ' ' . $fetch['last_name'];
                                                             ?>
                                                             <tr>
@@ -120,39 +137,42 @@ include 'islogin.php';
                                                                 <td>
                                                                     <?php echo $department; ?>
                                                                 </td>
+                                                                <td>
+                                                                    <button type="button" class="btn btn-sm btn-soft-danger" data-bs-toggle="modal" data-bs-target="#studentModal<?php echo $count; ?>">Delete</button>
+                                                                </td>
                                                             </tr>
-                                                            <div class="modal fade" id="studentModal<?php echo $count; ?>"
-                                                                tabindex="-1" role="dialog"
-                                                                aria-labelledby="exampleModalScrollableTitle"
-                                                                aria-hidden="true">
+                                                            <div class="modal fade" id="studentModal<?php echo $count; ?>" tabindex="-1" role="dialog"
+                                                                aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-scrollable">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title"
-                                                                                id="exampleModalScrollableTitle">Applicant
-                                                                                Details</h5>
-                                                                            <button type="button" class="btn-close"
-                                                                                data-bs-dismiss="modal" aria-label="Close">
-                                                                            </button>
+                                                                            <h5 class="modal-title" id="exampleModalScrollableTitle">Delete Applicant Confirmation</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
-                                                                        <div class="modal-body">
-                                                                            <p style="color:red"> You are viewing student
-                                                                                information with: <br> Application ID: <b>
-                                                                                    <?php echo $student_id; ?>
-                                                                                </b> <br> Name: <b>
-                                                                                    <?php echo $name; ?>
-                                                                                </b> </p>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-light"
-                                                                                data-bs-dismiss="modal">Close</button>
-                                                                            <button type="button"
-                                                                                class="btn btn-success">Save
-                                                                                changes</button>
-                                                                        </div>
-                                                                    </div><!-- /.modal-content -->
-                                                                </div><!-- /.modal-dialog -->
-                                                            </div><!-- /.modal -->
+                                                                        <form action="controller/generalController.php" method="post">
+                                                                            <input type="hidden" name="id" value="<?php echo $id; ?>">
+                                                                            <input type="hidden" name="redirect" value="applicants.php">
+                                                                            <input type="hidden" name="table" value="students">
+                                                                            <div class="modal-body">
+                                                                            <center>
+                                                                                <span style="color:red; font-size: 18px; text-align:center;"> Are you sure you want to delete the applicant with: <br>
+                                                                                Application ID: <b>
+                                                                                    <?php echo $application_id; ?>
+                                                                                        </b> <br>
+                                                                                        Name: <b>
+                                                                                            <?php echo $name; ?>
+                                                                                        </b>
+                                                                                    </span>
+                                                                                </center>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                                                                <button type="submit" name="delete" class="btn btn-danger" id="deleteApplicantBtn">Delete Applicant</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         <?php } ?>
 
                                                     </tbody>

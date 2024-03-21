@@ -32,10 +32,13 @@ if (isset($_POST['delete'])) {
     $course_id = $_POST['id'];
     $redirect = $_POST['redirect'];
     $table = $_POST['table'];
+
     if($table == 'courses') {
         $id = 'course_id';
-    }else{
+    }elseif($table == 'departments'){
         $id = 'department_id';
+    }elseif($table == 'students') {
+        $id = 'id';
     }
 
     $delete_query = "DELETE FROM $table WHERE $id = $course_id";
