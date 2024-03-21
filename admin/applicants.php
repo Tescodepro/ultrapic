@@ -96,7 +96,7 @@ include 'islogin.php';
                                                     <tbody>
                                                         <?php
                                                         $count = 1;
-                                                        $get_students = "SELECT * FROM students INNER JOIN courses ON courses.course_id = students.register_courses_id INNER JOIN departments ON departments.department_id = students.department_id";
+                                                        $get_students = "SELECT * FROM students INNER JOIN courses ON courses.course_id = students.register_courses_id INNER JOIN departments ON departments.department_id = students.department_id ORDER BY students.application_id ASC";
                                                         $result_row = mysqli_query($dbconnect, $get_students);
                                                         while ($fetch = mysqli_fetch_array($result_row)) {
                                                             $application_id = $fetch['application_id'];
@@ -138,26 +138,41 @@ include 'islogin.php';
                                                                     <?php echo $department; ?>
                                                                 </td>
                                                                 <td>
-                                                                    <button type="button" class="btn btn-sm btn-soft-danger" data-bs-toggle="modal" data-bs-target="#studentModal<?php echo $count; ?>">Delete</button>
+                                                                    <button type="button" class="btn btn-sm btn-soft-danger"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#studentModal<?php echo $count; ?>">Delete</button>
                                                                 </td>
                                                             </tr>
-                                                            <div class="modal fade" id="studentModal<?php echo $count; ?>" tabindex="-1" role="dialog"
-                                                                aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+                                                            <div class="modal fade" id="studentModal<?php echo $count; ?>"
+                                                                tabindex="-1" role="dialog"
+                                                                aria-labelledby="exampleModalScrollableTitle"
+                                                                aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-scrollable">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalScrollableTitle">Delete Applicant Confirmation</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                            <h5 class="modal-title"
+                                                                                id="exampleModalScrollableTitle">Delete
+                                                                                Applicant Confirmation</h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
                                                                         </div>
-                                                                        <form action="controller/generalController.php" method="post">
-                                                                            <input type="hidden" name="id" value="<?php echo $id; ?>">
-                                                                            <input type="hidden" name="redirect" value="applicants.php">
-                                                                            <input type="hidden" name="table" value="students">
+                                                                        <form action="controller/generalController.php"
+                                                                            method="post">
+                                                                            <input type="hidden" name="id"
+                                                                                value="<?php echo $id; ?>">
+                                                                            <input type="hidden" name="redirect"
+                                                                                value="applicants.php">
+                                                                            <input type="hidden" name="table"
+                                                                                value="students">
                                                                             <div class="modal-body">
-                                                                            <center>
-                                                                                <span style="color:red; font-size: 18px; text-align:center;"> Are you sure you want to delete the applicant with: <br>
-                                                                                Application ID: <b>
-                                                                                    <?php echo $application_id; ?>
+                                                                                <center>
+                                                                                    <span
+                                                                                        style="color:red; font-size: 18px; text-align:center;">
+                                                                                        Are you sure you want to delete the
+                                                                                        applicant with: <br>
+                                                                                        Application ID: <b>
+                                                                                            <?php echo $application_id; ?>
                                                                                         </b> <br>
                                                                                         Name: <b>
                                                                                             <?php echo $name; ?>
@@ -166,8 +181,12 @@ include 'islogin.php';
                                                                                 </center>
                                                                             </div>
                                                                             <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                                                                <button type="submit" name="delete" class="btn btn-danger" id="deleteApplicantBtn">Delete Applicant</button>
+                                                                                <button type="button" class="btn btn-light"
+                                                                                    data-bs-dismiss="modal">Close</button>
+                                                                                <button type="submit" name="delete"
+                                                                                    class="btn btn-danger"
+                                                                                    id="deleteApplicantBtn">Delete
+                                                                                    Applicant</button>
                                                                             </div>
                                                                         </form>
                                                                     </div>
